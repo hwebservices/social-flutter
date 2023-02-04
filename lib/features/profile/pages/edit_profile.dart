@@ -17,10 +17,10 @@ import '../../../services/geolocation.dart';
 import '../../../widgets/appbar.dart';
 import '../../../widgets/custom_text_container.dart';
 import '../../../widgets/custom_textfield.dart';
-import '../../../widgets/custom_icon.dart';
 import '../../blocs.dart';
 import '../../cubits.dart';
 import '../../repositories.dart';
+import 'changes_profile.dart';
 
 class EditProfile extends StatefulWidget {
   static const String routeName = '/editprofile';
@@ -116,205 +116,127 @@ class _EditProfileState extends State<EditProfile> {
                               const TitleWithIcon(
                                   title: 'Pictures', icon: Icons.image),
                               const SizedBox(width: 10),
-                              InkWell(
-                                child: Container(
-                                    height: 25,
-                                    width: 80,
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Theme.of(context).backgroundColor,
-                                        borderRadius:
-                                            BorderRadius.circular(18.0)),
-                                    child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const CustomIcon(
-                                              color: AppColors.iconDark,
-                                              icon: FontAwesomeIcons.upload,
-                                              size: 12),
-                                          const SizedBox(width: 5),
-                                          Text('upload',
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 12,
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontWeight: FontWeight.w500))
-                                        ])),
-                                onTap: () async {
-                                  ImagePicker picker = ImagePicker();
-                                  final XFile? image = await picker.pickImage(
-                                      source: ImageSource.gallery);
-                                  if (image != null) {
-                                    await StorageRepository()
-                                        .uploadImage(image);
-                                    await DatabaseRepository().getImages().then(
-                                        (value) =>
-                                            BlocProvider.of<ImageBloc>(context)
-                                                .add(UpdateUserImages(
-                                                    image: value!)));
-                                  }
-                                },
-                              ),
+                              SelectChangeProfile(
+                                  text: 'Upload',
+                                  onTap: () async {
+                                    ImagePicker picker = ImagePicker();
+                                    final XFile? image = await picker.pickImage(
+                                        source: ImageSource.gallery);
+                                    if (image != null) {
+                                      await StorageRepository()
+                                          .uploadImage(image);
+                                      await DatabaseRepository()
+                                          .getImages()
+                                          .then((value) =>
+                                              BlocProvider.of<ImageBloc>(
+                                                      context)
+                                                  .add(UpdateUserImages(
+                                                      image: value!)));
+                                    }
+                                  },
+                                  icon: FontAwesomeIcons.upload),
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Expanded(
-                            child: SizedBox(
-                                height: 200,
-                                width: MediaQuery.of(context).size.width,
-                                child: BlocBuilder<ImageBloc, ImageState>(
-                                    builder: (context, imageState) {
-                                  if (imageState is ImagesLoading) {
-                                    return const Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                  if (imageState is ImagesLoaded) {
-                                    return Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 15.0, right: 15.0),
-                                        child: ListView.separated(
-                                            separatorBuilder:
-                                                (contenxt, index) {
-                                              return const SizedBox(width: 15);
-                                            },
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
-                                                imageState.imageUrls.length,
-                                            itemBuilder: (context, index) {
-                                              return Stack(children: [
-                                                Image.network(
-                                                    imageState.imageUrls[index],
-                                                    width: 150.0,
-                                                    height: 200.0,
-                                                    fit: BoxFit.fill),
-                                                Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 8.0,
-                                                            left: 70.0),
-                                                    child: Align(
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        child: IconButton(
-                                                            icon: Icon(
-                                                                Icons
-                                                                    .delete_rounded,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondary,
-                                                                size: 32),
-                                                            onPressed:
-                                                                () async {
-                                                              print(
-                                                                  'delete pressed');
-                                                              await DatabaseRepository()
-                                                                  .getImages()
-                                                                  .then(
-                                                                (value) async {
-                                                                  var url = value!
-                                                                      .elementAt(
-                                                                          index);
-                                                                  await StorageRepository()
-                                                                      .deleteImage(
-                                                                          url);
-                                                                  BlocProvider.of<
-                                                                              ImageBloc>(
-                                                                          context)
-                                                                      .add(DeleteImage(
-                                                                          url:
-                                                                              url));
-                                                                },
-                                                              );
-                                                            })))
-                                              ]);
-                                            }));
-                                  }
-                                  return const Text('Something went wrong...');
-                                })),
-                          ),
+                          BlocBuilder<ImageBloc, ImageState>(
+                              builder: (context, imageState) {
+                            if (imageState is ImagesLoading) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+                            if (imageState is ImagesLoaded) {
+                              return SizedBox(
+                                height: 100,
+                                child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 15.0, right: 15.0),
+                                    child: ListView.separated(
+                                        separatorBuilder: (contenxt, index) {
+                                          return const SizedBox(width: 15);
+                                        },
+                                        shrinkWrap: false,
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: imageState.imageUrls.length,
+                                        itemBuilder: (context, index) {
+                                          return Stack(children: [
+                                            Image.network(
+                                                imageState.imageUrls[index],
+                                                width: 150.0,
+                                                height: 200.0,
+                                                fit: BoxFit.fill),
+                                            Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 8.0, left: 70.0),
+                                                child: Align(
+                                                    alignment:
+                                                        Alignment.bottomCenter,
+                                                    child: IconButton(
+                                                        icon: Icon(
+                                                            Icons
+                                                                .delete_rounded,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .colorScheme
+                                                                .secondary,
+                                                            size: 32),
+                                                        onPressed: () async {
+                                                          await DatabaseRepository()
+                                                              .getImages()
+                                                              .then(
+                                                                  (value) async {
+                                                            var url = value!
+                                                                .elementAt(
+                                                                    index);
+                                                            await StorageRepository()
+                                                                .deleteImage(
+                                                                    url);
+                                                            BlocProvider.of<
+                                                                        ImageBloc>(
+                                                                    context)
+                                                                .add(DeleteImage(
+                                                                    url: url));
+                                                          });
+                                                        })))
+                                          ]);
+                                        })),
+                              );
+                            }
+                            return const Text('Something went wrong...');
+                          }),
                           const SizedBox(height: 10),
                           Row(
                             children: [
                               const TitleWithIcon(
                                   title: 'Bio', icon: Icons.description),
                               const SizedBox(width: 10),
-                              InkWell(
-                                child: Container(
-                                    height: 25,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Theme.of(context).backgroundColor,
-                                        borderRadius:
-                                            BorderRadius.circular(18.0)),
-                                    child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const CustomIcon(
-                                              color: AppColors.iconDark,
-                                              icon: Icons.description,
-                                              size: 12),
-                                          const SizedBox(width: 5),
-                                          Text('Update Bio',
-                                              style: GoogleFonts.roboto(
-                                                  fontSize: 12,
-                                                  color: Theme.of(context)
-                                                      .primaryColor,
-                                                  fontWeight: FontWeight.w500))
-                                        ])),
+                              SelectChangeProfile(
+                                text: 'Update',
+                                icon: Icons.description,
                                 onTap: () {
                                   context.read<SignupCubit>().updateBio();
                                 },
-                              )
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
-                          CustomTextField(
-                              obscureText: false,
-                              icon: Icons.description,
-                              hint: profileState.user.bio!,
-                              onChanged: (value) {
-                                context.read<SignupCubit>().biochange(value);
-                              }),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CustomTextField(
+                                obscureText: false,
+                                icon: Icons.description,
+                                hint: profileState.user.bio!,
+                                onChanged: (value) {
+                                  context.read<SignupCubit>().biochange(value);
+                                }),
+                          ),
                           const SizedBox(height: 10),
                           Row(children: [
                             const TitleWithIcon(
                                 title: 'Interests', icon: Icons.interests),
                             const SizedBox(width: 10),
-                            InkWell(
-                              child: Container(
-                                  height: 25,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).backgroundColor,
-                                      borderRadius:
-                                          BorderRadius.circular(18.0)),
-                                  child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const CustomIcon(
-                                            color: AppColors.iconDark,
-                                            icon: Icons.description,
-                                            size: 12),
-                                        const SizedBox(width: 5),
-                                        Text('Update Interests',
-                                            style: GoogleFonts.roboto(
-                                                fontSize: 12,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                                fontWeight: FontWeight.w500))
-                                      ])),
+                            SelectChangeProfile(
+                              text: 'Update',
+                              icon: Icons.description,
                               onTap: () {
                                 context.read<SignupCubit>().updateInterest();
                               },
@@ -372,45 +294,13 @@ class _EditProfileState extends State<EditProfile> {
                                     icon: FontAwesomeIcons.user,
                                   ),
                                   const SizedBox(width: 10),
-                                  InkWell(
-                                    child: Container(
-                                      height: 25,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        color:
-                                            Theme.of(context).backgroundColor,
-                                        borderRadius:
-                                            BorderRadius.circular(18.0),
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const CustomIcon(
-                                              color: AppColors.iconDark,
-                                              icon: Icons.description,
-                                              size: 12),
-                                          const SizedBox(width: 5),
-                                          Text(
-                                            'Update Persona',
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 12,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      context
+                                  SelectChangeProfile(
+                                      onTap: () => context
                                           .read<SignupCubit>()
-                                          .updateGender();
-                                    },
-                                  ),
+                                          .updateGender(),
+                                      icon: Icons.description,
+                                      text: 'Update')
+                                  //
                                 ],
                               ),
                               const SizedBox(height: 10),
@@ -421,6 +311,7 @@ class _EditProfileState extends State<EditProfile> {
                                   'Select your persona',
                                   style: GoogleFonts.aBeeZee(
                                     fontSize: 18,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 value: currentSelectedValue,
@@ -429,7 +320,7 @@ class _EditProfileState extends State<EditProfile> {
                                   setState(
                                     () {
                                       currentSelectedValue = newValue;
-                                      // state.didChange(newValue);
+
                                       selected = true;
                                       context
                                           .read<SignupCubit>()
@@ -460,39 +351,12 @@ class _EditProfileState extends State<EditProfile> {
                               const TitleWithIcon(
                                   title: 'Age', icon: Icons.numbers),
                               const SizedBox(width: 10),
-                              InkWell(
-                                child: Container(
-                                  height: 25,
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).backgroundColor,
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const CustomIcon(
-                                          color: AppColors.iconDark,
-                                          icon: Icons.description,
-                                          size: 12),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        'Update Age',
-                                        style: GoogleFonts.roboto(
-                                          fontSize: 12,
-                                          color: Theme.of(context).primaryColor,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                onTap: () {
-                                  context.read<SignupCubit>().updateAge();
-                                },
-                              ),
+                              SelectChangeProfile(
+                                  onTap: () =>
+                                      context.read<SignupCubit>().updateAge(),
+                                  icon: Icons.description,
+                                  text: 'Update')
+                              //
                             ],
                           ),
                           const SizedBox(height: 10),
@@ -516,45 +380,12 @@ class _EditProfileState extends State<EditProfile> {
                                       title: 'Location',
                                       icon: FontAwesomeIcons.locationArrow),
                                   const SizedBox(width: 10),
-                                  InkWell(
-                                    child: Container(
-                                      height: 25,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                        color:
-                                            Theme.of(context).backgroundColor,
-                                        borderRadius:
-                                            BorderRadius.circular(18.0),
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const CustomIcon(
-                                              color: AppColors.iconDark,
-                                              icon: Icons.description,
-                                              size: 12),
-                                          const SizedBox(width: 5),
-                                          Text(
-                                            'Update Location',
-                                            style: GoogleFonts.roboto(
-                                              fontSize: 12,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    onTap: () {
-                                      context
+                                  SelectChangeProfile(
+                                      onTap: () => context
                                           .read<SignupCubit>()
-                                          .updateLocation();
-                                    },
-                                  ),
+                                          .updateLocation(),
+                                      icon: Icons.description,
+                                      text: 'Update')
                                 ],
                               ),
                               const SizedBox(height: 10),
@@ -563,18 +394,15 @@ class _EditProfileState extends State<EditProfile> {
                                 child: Column(
                                   children: [
                                     CustomTextField(
-                                      // controller: _controller,
                                       obscureText: false,
                                       icon: Icons.location_on,
                                       hint: 'E.g New York, United States',
                                       onChanged: (value) {
-                                        // value = '$city, $country';
                                         context
                                             .read<SignupCubit>()
                                             .locationChanged(value);
                                         print(profileState.user.location);
                                       },
-                                      // controller: controller,
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
@@ -646,7 +474,6 @@ class _EditProfileState extends State<EditProfile> {
                                                       )
                                                     },
                                                   );
-                                                  // copied successfully
                                                 },
                                                 child: const Icon(Icons.copy,
                                                     color: Colors.red,

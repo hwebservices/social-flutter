@@ -23,7 +23,7 @@ class TitleWithIcon extends StatelessWidget {
         Text(title,
             style: GoogleFonts.roboto(
                 fontSize: 16,
-                color: Theme.of(context).backgroundColor,
+                color: AppColors.textfieldTitle,
                 fontWeight: FontWeight.w500)),
       ],
     );
