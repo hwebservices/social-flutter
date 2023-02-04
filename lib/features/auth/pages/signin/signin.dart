@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
+import '../../../../config/constants/colors.dart';
 import '../../../../config/instances/login_status.dart';
 import '../../../../widgets/alert_dialog.dart';
 import '../../../cubits.dart';
@@ -102,14 +103,14 @@ class _SigninPageState extends State<SigninPage> {
             Image.asset('assets/images/connect.png',
                 height: 25,
                 width: 25,
-                color: Theme.of(context).colorScheme.secondary),
+                color: Theme.of(context).colorScheme.primary),
             const SizedBox(width: 5),
             Text(
               'social',
               style: GoogleFonts.aBeeZee(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
           ],
@@ -222,6 +223,8 @@ class _SigninPageState extends State<SigninPage> {
                                 ),
                                 const SizedBox(height: 10),
                                 Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Padding(
                                       padding:
@@ -235,8 +238,8 @@ class _SigninPageState extends State<SigninPage> {
                                         child: Text(
                                           'Forgot Password?',
                                           style: GoogleFonts.aBeeZee(
-                                            color: Theme.of(context)
-                                                .backgroundColor,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             fontSize: 14,
                                           ),
                                         ),
@@ -286,19 +289,17 @@ class _SigninPageState extends State<SigninPage> {
                           DecoratedBox(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 begin: Alignment.bottomCenter,
                                 end: Alignment.centerRight,
                                 colors: [
-                                  Theme.of(context).colorScheme.secondary,
-                                  Theme.of(context).primaryColor,
+                                  AppColors.buttonDark,
+                                  AppColors.buttonLight,
                                 ],
                               ),
                             ),
                             child: ElevatedButton(
                               onPressed: () {
-                                print('signin pressed');
-
                                 signinUser(context);
                               },
                               style: ElevatedButton.styleFrom(

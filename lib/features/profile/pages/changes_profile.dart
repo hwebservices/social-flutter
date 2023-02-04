@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../config/constatns/colors.dart';
+import '../../../config/constants/colors.dart';
 import '../../../widgets/custom_icon.dart';
 
 class SelectChangeProfile extends StatelessWidget {

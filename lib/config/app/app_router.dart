@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social/features/settings/pages/settings.dart';
 
-import '../features/auth/pages/signin/forgot_password.dart';
-import '../features/home/home_screen.dart';
-import '../features/onboarding/onboardinng_screen.dart';
-import '../features/people/pages/people/people_list.dart';
-import '../features/qrcode/qrcode.dart';
-import '../features/qrcode/scanqrcode.dart';
-import '../features/repositories.dart';
-import '../features/splash/splashscreen.dart';
-import '../features/profile/pages/edit_profile.dart';
-import '../features/profile/pages/profile.dart';
-import '../widgets/bloc.dart';
+import '../../features/auth/pages/signin/forgot_password.dart';
+import '../../features/home/home_screen.dart';
+import '../../features/onboarding/z_onboarding.dart';
+import '../../features/people/pages/people_list.dart';
+import '../../features/profile/pages/edit_profile.dart';
+import '../../features/profile/pages/profile.dart';
+import '../../features/qrcode/qrcode.dart';
+import '../../features/qrcode/scanqrcode.dart';
+import '../../features/repositories.dart';
+import '../../features/splash/splashscreen.dart';
+import '../../widgets/bloc.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
@@ -42,6 +43,8 @@ class AppRouter {
         return ScanQR.route();
       case PeopleList.routeName:
         return PeopleList.route();
+      case Settings.routeName:
+        return Settings.route();
       case TestingBloc.routeName:
         return TestingBloc.route();
       default:

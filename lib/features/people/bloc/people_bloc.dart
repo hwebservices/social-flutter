@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import '../../blocs.dart';
 import '../../repositories.dart';
 import '../model/people.dart';
-import '../pages/people/people_list.dart';
 
 part 'people_event.dart';
 part 'people_state.dart';

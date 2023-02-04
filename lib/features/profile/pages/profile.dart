@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:social/config/constatns/colors.dart';
+import 'package:social/config/constants/colors.dart';
 import 'package:social/widgets/custom_icon.dart';
 import 'package:social/widgets/icon_title.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -162,7 +162,10 @@ class _ProfileState extends State<Profile> {
                                                 child: const Icon(
                                                     Icons.settings,
                                                     color: Colors.white),
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Navigator.of(context)
+                                                      .pushNamed('/settings');
+                                                },
                                               ),
                                             ),
                                           ),

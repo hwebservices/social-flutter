@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social/config/constants/colors.dart';
 import 'package:social/widgets/custom_textfield.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
@@ -174,12 +175,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             DecoratedBox(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.centerRight,
                                   colors: [
-                                    Theme.of(context).colorScheme.secondary,
-                                    Theme.of(context).primaryColor,
+                                    AppColors.buttonDark,
+                                    AppColors.buttonLight,
                                   ],
                                 ),
                               ),

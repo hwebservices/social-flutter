@@ -4,15 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
-import 'config/app_router.dart';
+import 'config/app/app_router.dart';
+import 'config/app/theme.dart';
 import 'config/database/database_repository.dart';
-import 'config/theme.dart';
-
 import 'features/blocs.dart';
 import 'features/cubits.dart';
 import 'features/onboarding/z_onboarding.dart';
-import 'features/people/pages/people/member_profile.dart';
+import 'features/people/pages/member_profile.dart';
 import 'features/repositories.dart';
 import 'features/splash/splashscreen.dart';
 import 'features/users/cubit/searchpeople_cubit.dart';
@@ -24,7 +22,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Provider.debugCheckInvalidValueType = null;
   await Firebase.initializeApp(
-      name: 'social-hwebservices',
+      // name: 'social-hwebservices',
       options: DefaultFirebaseOptions.currentPlatform);
   runApp(MultiProvider(providers: [
     Provider<UserData>(create: (context) => UserData()),

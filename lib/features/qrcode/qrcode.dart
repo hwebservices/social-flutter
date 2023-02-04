@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../config/constatns/colors.dart';
+import '../../config/constants/colors.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/user_avatar.dart';
 import '../profile/bloc/profile_bloc.dart';

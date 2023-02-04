@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social/widgets/countdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../config/constants/colors.dart';
 import '../../../cubits.dart';
 import '../../../onboarding/z_onboarding.dart';
 
@@ -66,11 +67,10 @@ class _VerifyEmailState extends State<VerifyEmail>
         builder: (context, state) {
           return Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/scafold_bkg.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+                gradient: LinearGradient(
+                    colors: [AppColors.profileDark, AppColors.profileLight],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topLeft)),
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -7,7 +7,7 @@ import 'package:social/widgets/custom_textfield.dart';
 import 'package:social/widgets/custombtn.dart';
 import 'package:social/widgets/header.dart';
 
-import '../../config/constatns/list_of_personas.dart';
+import '../../config/constants/list_of_personas.dart';
 import '../cubits.dart';
 
 class Demo extends StatefulWidget {

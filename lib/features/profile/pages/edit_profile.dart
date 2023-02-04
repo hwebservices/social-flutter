@@ -9,9 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
-import '../../../config/constatns/colors.dart';
-import '../../../config/constatns/list_of_interests.dart';
-import '../../../config/constatns/list_of_personas.dart';
+import '../../../config/constants/colors.dart';
+import '../../../config/constants/list_of_interests.dart';
+import '../../../config/constants/list_of_personas.dart';
 import '../../../config/database/database_repository.dart';
 import '../../../services/geolocation.dart';
 import '../../../widgets/appbar.dart';

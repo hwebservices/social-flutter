@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:social/config/constatns/list_of_interests.dart';
+import 'package:social/config/constants/list_of_interests.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:social/widgets/custom_text_container.dart';
 import 'package:social/widgets/custom_textfield.dart';

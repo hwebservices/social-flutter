@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../config/constants/colors.dart';
 import '../../widgets/appbar.dart';
 
 import '../blocs.dart';
@@ -96,11 +97,13 @@ class _ScanQRState extends State<ScanQR> {
                   if (peopleState is PeopleLoaded) {
                     return Container(
                       decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/scafold_bkg.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          gradient: LinearGradient(
+                              colors: [
+                            AppColors.profileDark,
+                            AppColors.profileLight
+                          ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topLeft)),
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
