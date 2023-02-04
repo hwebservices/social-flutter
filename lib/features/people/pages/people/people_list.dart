@@ -9,6 +9,7 @@ import 'package:social/widgets/icon_title.dart';
 import 'package:social/widgets/message_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../config/constatns/colors.dart';
 import '../../../../config/screen_arguments.dart';
 import '../../../../widgets/user_avatar.dart';
 import '../../../blocs.dart';
@@ -166,10 +167,13 @@ class _PeopleListState extends State<PeopleList>
                   if (peopleState is PeopleLoaded) {
                     return Container(
                       decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/scafold_bkg.png'),
-                          fit: BoxFit.cover,
-                        ),
+                        gradient: LinearGradient(
+                            colors: [
+                              AppColors.profileDark,
+                              AppColors.profileLight
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topLeft),
                       ),
                       child: Center(
                         child: Padding(

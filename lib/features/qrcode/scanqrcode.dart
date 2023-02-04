@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/appbar.dart';
-import '../../widgets/user_avatar.dart';
+
 import '../blocs.dart';
 import '../repositories.dart';
 
@@ -88,7 +88,6 @@ class _ScanQRState extends State<ScanQR> {
               return const Center(child: CircularProgressIndicator());
             }
             if (profileState is ProfileLoaded) {
-              imaAvatar(profileState);
               return BlocBuilder<PeopleBloc, PeopleState>(
                 builder: (context, peopleState) {
                   if (peopleState is PeopleLoading) {
@@ -115,42 +114,39 @@ class _ScanQRState extends State<ScanQR> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Flex(
-                                      direction: Axis.vertical,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: 65,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: Theme.of(context)
-                                                  .primaryColor,
-                                            ),
-                                            onPressed: () async {
-                                              barcodeScan();
-                                            },
-                                            child: Text(
-                                              'Tap to Scan',
-                                              style: GoogleFonts.roboto(
-                                                fontSize: 28,
-                                                color: Theme.of(context)
-                                                    .secondaryHeaderColor,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                        direction: Axis.vertical,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                              height: 65,
+                                              child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .primaryColor,
+                                                  ),
+                                                  onPressed: () async {
+                                                    barcodeScan();
+                                                  },
+                                                  child: Text(
+                                                    'Tap to Scan',
+                                                    style: GoogleFonts.roboto(
+                                                        fontSize: 28,
+                                                        color: Theme.of(context)
+                                                            .secondaryHeaderColor,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  )))
+                                        ]),
                                     const SizedBox(height: 20),
-                                    Text(
-                                      'Scan result : $_scanBarcode\n',
-                                      style: GoogleFonts.roboto(
-                                        fontSize: 18,
-                                        color: Theme.of(context).primaryColor,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
+                                    Text('Scan result : $_scanBarcode\n',
+                                        style: GoogleFonts.roboto(
+                                            fontSize: 18,
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 10),
                                     Visibility(
                                       visible:
@@ -162,17 +158,13 @@ class _ScanQRState extends State<ScanQR> {
                                                 2,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Theme.of(context)
-                                                .backgroundColor,
-                                          ),
+                                              backgroundColor: Theme.of(context)
+                                                  .backgroundColor),
                                           onPressed: () async {
-                                            //TODO: Move to Cubit
-
                                             PeopleRepository()
                                                 .searchPeople(
                                                     email: _scanBarcode)
                                                 .then((value) {
-                                              print(value);
                                               if (value.email == null) {
                                                 PeopleRepository()
                                                     .getPeople(
@@ -205,7 +197,7 @@ class _ScanQRState extends State<ScanQR> {
                                               const Icon(FontAwesomeIcons.plus),
                                               const SizedBox(width: 10),
                                               Text(
-                                                'Add to Hunter List',
+                                                'Add to People List',
                                                 style: GoogleFonts.roboto(
                                                   fontSize: 18,
                                                   color: Theme.of(context)
@@ -285,32 +277,5 @@ class _ScanQRState extends State<ScanQR> {
         ),
       ),
     );
-  }
-
-  void imaAvatar(ProfileLoaded state) {
-    switch (state.user.gender) {
-      case 'Bear':
-        image = 'assets/images/_bear.png';
-        break;
-      case 'Cub':
-        image = 'assets/images/_cub.png';
-        break;
-      case 'Leather':
-        image = 'assets/images/_leather.png';
-        break;
-      case 'Muscle Bear':
-        image = 'assets/images/_musclebear.png';
-        break;
-      case 'Daddy':
-        image = 'assets/images/_daddy.png';
-        break;
-      case 'Chaser':
-        image = 'assets/images/_chaser.png';
-        break;
-      case 'Other':
-        image = 'assets/images/_other.png';
-        break;
-      default:
-    }
   }
 }

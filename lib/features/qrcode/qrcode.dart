@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../../config/constatns/colors.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/user_avatar.dart';
 import '../profile/bloc/profile_bloc.dart';
@@ -34,7 +35,7 @@ class _GenerateQRState extends State<GenerateQR> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: 'Bear Mate Code',
+        title: 'Flutter People Barcode',
       ),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
@@ -42,15 +43,13 @@ class _GenerateQRState extends State<GenerateQR> {
             return const Center(child: CircularProgressIndicator());
           }
           if (state is ProfileLoaded) {
-            imaAvatar(state);
             qrData = state.user.email!;
             return Container(
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/scafold_bkg.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  gradient: LinearGradient(
+                      colors: [AppColors.profileDark, AppColors.profileLight],
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.centerLeft)),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,10 +87,12 @@ class _GenerateQRState extends State<GenerateQR> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(width: 10),
-                            SizedBox(
+                            const SizedBox(
                               width: 50,
                               height: 50,
-                              child: UserAvatar(image: image),
+                              child: UserAvatar(
+                                image: 'assets/images/happy.png',
+                              ),
                             ),
                             const SizedBox(width: 10),
                             Text(
@@ -173,32 +174,5 @@ class _GenerateQRState extends State<GenerateQR> {
         },
       ),
     );
-  }
-
-  void imaAvatar(ProfileLoaded state) {
-    switch (state.user.gender) {
-      case 'Bear':
-        image = 'assets/images/_bear.png';
-        break;
-      case 'Cub':
-        image = 'assets/images/_cub.png';
-        break;
-      case 'Leather':
-        image = 'assets/images/_leather.png';
-        break;
-      case 'Muscle Bear':
-        image = 'assets/images/_musclebear.png';
-        break;
-      case 'Daddy':
-        image = 'assets/images/_daddy.png';
-        break;
-      case 'Chaser':
-        image = 'assets/images/_chaser.png';
-        break;
-      case 'Other':
-        image = 'assets/images/_other.png';
-        break;
-      default:
-    }
   }
 }

@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../config/database/database_repository.dart';
 import '../../../widgets/custom_text_container.dart';
 import '../../../widgets/rect_option.dart';
+import '../../../widgets/user_avatar.dart';
 import '../../blocs.dart';
 import '../../onboarding/z_onboarding.dart';
 import '../../repositories.dart';
@@ -201,7 +202,13 @@ class _ProfileState extends State<Profile> {
                                             Colors.black
                                           ]),
                                           shape: BoxShape.circle),
-                                      child: Container(),
+                                      child: const SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: UserAvatar(
+                                          image: 'assets/images/happy.png',
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -365,7 +372,7 @@ class _ProfileState extends State<Profile> {
                 border: Border.all(color: Colors.white, width: 1.0)),
             child: InkWell(
               child: const CustomIcon(
-                  icon: FontAwesomeIcons.marsDouble,
+                  icon: FontAwesomeIcons.peopleGroup,
                   size: 20,
                   color: AppColors.iconLight),
               onTap: () {

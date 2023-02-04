@@ -99,7 +99,6 @@ class _EditProfileState extends State<EditProfile> {
                 builder: (context, signupState) {
                   return SingleChildScrollView(
                     child: Container(
-                      height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
@@ -146,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                             }
                             if (imageState is ImagesLoaded) {
                               return SizedBox(
-                                height: 100,
+                                height: 200,
                                 child: Padding(
                                     padding: const EdgeInsets.only(
                                         left: 15.0, right: 15.0),
