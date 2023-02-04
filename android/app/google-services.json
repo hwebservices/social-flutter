@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "211272924311",
+    "firebase_url": "https://social-hwebservices-default-rtdb.firebaseio.com",
+    "project_id": "social-hwebservices",
+    "storage_bucket": "social-hwebservices.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211272924311:android:20d2c09d4ec47db9107dd2",
+        "android_client_info": {
+          "package_name": "com.hwebservices.gbearwoof"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211272924311-f3hr6a3f5sgr0hhmftempp6hbuu9gqk6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDve3dU15Q6kFOxl7qBjidNlZdrh0U3iug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211272924311-f3hr6a3f5sgr0hhmftempp6hbuu9gqk6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "211272924311-9cmkgvqd0o291pmol2lv9ri3n50dsgvq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hwebservices.gbearwoof"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

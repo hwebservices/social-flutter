@@ -1,0 +1,10 @@
+export 'auth/repository/auth_repository.dart';
+export 'auth/repository/base_auth_repository.dart';
+export 'image/repository/base_storage_repository.dart';
+export 'image/repository/storage_repository.dart';
+export 'users/repository/users_repository.dart';
+export 'users/repository/base_load_users_repository.dart';
+export 'auth/repository/base_forgot_password_repositoy.dart';
+export 'auth/repository/forgot_password_repository.dart';
+export 'people/repository/base_people_repository.dart';
+export 'people/repository/people_repository.dart';

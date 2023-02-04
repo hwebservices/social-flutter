@@ -1,0 +1,79 @@
+{
+  "configurations": [
+    {
+      "name": "Dart",
+      "type": "dart",
+      "request": "launch",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "Flutter",
+      "type": "dart",
+      "request": "launch",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "Android",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "ZY2248V3SG",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "iPhone11Real",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "00008030-0010695C0A68802E",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "iPhone14ProMaxSimulator",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "76633A92-2F5D-4CEB-A214-E6B48F12F2AB",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "iPad",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "CEDDCDA1-6E06-4F9B-8245-3C096484F6EE",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "AndroidEmu",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "emulator-5554",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "AndroidEmu11",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "android 11 (API 30) (emulator)",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    },
+    {
+      "name": "Chrome",
+      "request": "launch",
+      "type": "dart",
+      "deviceId": "chrome",
+      "program": "/Users/henrymichels/Software/flutter/social/lib/main.dart"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Simulator & iOS Real",
+      "configurations": ["iPhone14ProMaxSimulator", "iPhone11Real"]
+    },
+    {
+      "name": "Chrome & iOS Real",
+      "configurations": ["Chrome", "iPhone11Real"]
+    },
+    {
+      "name": "AndriOS",
+      "configurations": ["Android", "iPhone11Real"]
+    }
+  ]
+}
