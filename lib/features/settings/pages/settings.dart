@@ -45,7 +45,7 @@ class Settings extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () => logoff.signOut(),
                     child: Text(
-                      'Sigout',
+                      'Signout',
                       style: GoogleFonts.roboto(
                         fontSize: 25,
                         color: Theme.of(context).primaryColor,
