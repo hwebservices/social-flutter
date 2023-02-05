@@ -1,16 +1,14 @@
-# social
+### Social Flutter - A new Flutter project.
 
-A new Flutter project.
+## How to run
 
-## Getting Started
+This project is using Firebase, therefore, you will need to use Firebase CLI to create your own product and setup the apps.
 
-This project is a starting point for a Flutter application.
+Yo can follow the tutorial below to setup Flutterfire:
 
-A few resources to get you started if this is your first Flutter project:
+- [Flutterfire](https://firebase.google.com/docs/flutter/setup?platform=ios#available-plugins)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+If you find any issue, feel free to create a PR or an issue.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Thanks
+Henry
