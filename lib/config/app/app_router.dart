@@ -27,8 +27,6 @@ class AppRouter {
         return HomeScreen.route();
       case SplashScreen.routeName:
         return SplashScreen.route();
-      // case ProfileScreen.routeName:
-      //   return ProfileScreen.route(user: settings.arguments as User);
       case OnboardingScreen.routeName:
         return OnboardingScreen.route();
       case ForgotPassword.routeName:
