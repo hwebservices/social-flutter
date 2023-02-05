@@ -75,9 +75,8 @@ class _ScanQRState extends State<ScanQR> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        title: 'Scan QRCode',
-      ),
+      appBar:
+          GradientAppBar(title: 'Scan QRCode', automaticallyImplyLeading: true),
       body: BlocProvider(
         create: (context) => PeopleBloc(
           peopleRepository: PeopleRepository(),

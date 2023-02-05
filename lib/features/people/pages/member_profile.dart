@@ -44,7 +44,8 @@ class _MemberProfileState extends State<MemberProfile> {
         if (state is UsersLoaded) {
           var height = MediaQuery.of(context).size.height;
           return Scaffold(
-            appBar: GradientAppBar(title: state.user.email!),
+            appBar: GradientAppBar(
+                title: state.user.email!, automaticallyImplyLeading: true),
             body: SingleChildScrollView(
               child: Container(
                 height: height,

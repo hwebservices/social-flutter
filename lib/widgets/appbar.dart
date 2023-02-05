@@ -9,6 +9,7 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget {
   final Gradient? gradient;
   final String title;
   final double barHeight;
+  final bool? automaticallyImplyLeading;
 
   GradientAppBar({
     super.key,
@@ -16,6 +17,7 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget {
     this.elevation = 3.0,
     this.gradient,
     this.barHeight = _defaultHeight,
+    this.automaticallyImplyLeading,
   });
 
   @override
@@ -34,6 +36,7 @@ class GradientAppBar extends StatelessWidget with PreferredSizeWidget {
                   blurRadius: 3)
             ]),
         child: AppBar(
+            automaticallyImplyLeading: automaticallyImplyLeading!,
             title: Text(
               title,
               style: GoogleFonts.roboto(

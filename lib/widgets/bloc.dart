@@ -26,8 +26,7 @@ class TestingBloc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: 'Testing Bloc',
-      ),
+          title: 'Testing Bloc', automaticallyImplyLeading: true),
       body: BlocBuilder<PeopleBloc, PeopleState>(
         builder: (context, peopleState) {
           if (peopleState is PeopleLoading) {

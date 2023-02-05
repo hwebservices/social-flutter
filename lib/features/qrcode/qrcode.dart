@@ -35,8 +35,7 @@ class _GenerateQRState extends State<GenerateQR> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: 'Flutter People Barcode',
-      ),
+          title: 'Flutter People Barcode', automaticallyImplyLeading: true),
       body: BlocBuilder<ProfileBloc, ProfileState>(
         builder: (context, state) {
           if (state is ProfileLoading) {

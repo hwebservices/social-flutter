@@ -88,7 +88,8 @@ class _EditProfileState extends State<EditProfile> {
     return KeyboardDismisser(
       gestures: const [GestureType.onTap],
       child: Scaffold(
-        appBar: GradientAppBar(title: 'Edit Profile'),
+        appBar: GradientAppBar(
+            title: 'Edit Profile', automaticallyImplyLeading: true),
         body: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, profileState) {
             if (profileState is ProfileLoading) {

@@ -24,7 +24,8 @@ class Settings extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: GradientAppBar(title: 'Settings'),
+      appBar:
+          GradientAppBar(title: 'Settings', automaticallyImplyLeading: true),
       body: Container(
         width: width,
         height: height,

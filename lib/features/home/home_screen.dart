@@ -35,7 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: GradientAppBar(title: 'Social Flutter'),
+      appBar: GradientAppBar(
+          title: 'Social Flutter', automaticallyImplyLeading: false),
       body: Container(
         width: width,
         height: height,

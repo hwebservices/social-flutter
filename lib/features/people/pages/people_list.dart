@@ -109,9 +109,7 @@ class _PeopleListState extends State<PeopleList>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GradientAppBar(
-        title: 'People',
-      ),
+      appBar: GradientAppBar(title: 'People', automaticallyImplyLeading: true),
       floatingActionButton: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.end,
